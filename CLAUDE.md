@@ -7,14 +7,14 @@ type: api
 
 # Wise
 
-International money transfer and multi-currency account platform (formerly TransferWise). Provides access to profiles, transfers, balances, exchange rates, and recipient data via a REST API.
+International money transfer and multi-currency account platform (formerly TransferWise). Provides access to profiles, transfers, and recipient account data via a REST API.
 
 ## Authentication
 
 ### API Key (Deprecated Personal Token)
 - Client app required: no
 - Header format: `Authorization: Bearer ${api_key}`
-- Deprecation note: Wise has published a migration guide from personal API tokens to OAuth2 + mTLS. Personal tokens will be deprecated after successful migration (no fixed absolute date). Tokens still work as of today.
+- Deprecation note: Wise has published a migration guide from personal API tokens to OAuth2 + mTLS. Personal tokens will be deprecated after successful migration (no fixed absolute date). Tokens still work as of March 2026.
 
 ## Post-Auth Steps
 

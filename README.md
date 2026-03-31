@@ -1,6 +1,6 @@
 # Wise
 
-API connector for [Wise](https://wise.com) (formerly TransferWise), an international money transfer and multi-currency account platform. This connector provides access to profiles, transfers, balances, exchange rates, and recipient data.
+API connector for [Wise](https://wise.com) (formerly TransferWise), an international money transfer and multi-currency account platform. This connector provides access to profiles, transfers, and recipient account data.
 
 ## What is this?
 
@@ -32,7 +32,7 @@ The `analitiq-plugin-dataflow` plugin will automatically fetch the required conn
 
 ## Authentication
 
-Wise uses a **Personal API Token** (Bearer token) for authentication. This is a deprecated auth method -- Wise is migrating to OAuth2 + mTLS -- but tokens continue to work as of today.
+Wise uses a **Personal API Token** (Bearer token) for authentication. This is a deprecated auth method -- Wise is migrating to OAuth2 + mTLS -- but tokens continue to work as of March 2026.
 
 ### How to get your credentials
 
