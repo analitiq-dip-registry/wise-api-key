@@ -1,9 +1,9 @@
 {
-  "connector_name": "REPLACE",
+  "connector_name": "Wise",
   "connector_type": "api",
-  "connector_descr": "REPLACE with a short description",
-  "slug": "REPLACE",
-  "base_url": "https://api.example.com/v1/",
+  "connector_descr": "International money transfer and multi-currency account platform (formerly TransferWise)",
+  "slug": "wise",
+  "base_url": "https://api.wise.com",
   "client_required": false,
   "auth": {
     "type": "api_key"
@@ -16,15 +16,36 @@
   "form_fields": [
     {
       "name": "api_key",
-      "label": "API Key",
+      "label": "Personal API Token",
       "type": "password",
       "required": true,
-      "secret": true
+      "secret": true,
+      "help_text": "Generate from Wise.com > Your Account > Integrations and Tools > API tokens"
+    }
+  ],
+  "post_auth_steps": [
+    {
+      "step_order": 1,
+      "field_name": "profile_id",
+      "label": "Select Profile",
+      "type": "select",
+      "required": true,
+      "options_source": {
+        "method": "GET",
+        "url": "https://api.wise.com/v2/profiles",
+        "headers": {
+          "Authorization": "Bearer ${api_key}"
+        },
+        "items_path": null,
+        "value_path": "id",
+        "label_path": "fullName"
+      }
     }
   ],
   "timeout": 30,
   "requests_per_second": {
-    "max_requests": 60,
+    "max_requests": 1000,
     "time_window_seconds": 60
-  }
+  },
+  "api_doc_url": "https://docs.wise.com/api-docs/api-reference"
 }

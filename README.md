@@ -1,20 +1,20 @@
-# REPLACE_CONNECTOR_NAME
+# Wise
 
-REPLACE with a short description of what this connector does and what system it integrates with.
+API connector for [Wise](https://wise.com) (formerly TransferWise), an international money transfer and multi-currency account platform. This connector provides access to profiles, transfers, balances, exchange rates, and recipient data.
 
 ## What is this?
 
-This is a **connector** — a configuration that defines how to authenticate with REPLACE_SYSTEM_NAME and what data endpoints are available for reading and writing. It does not move data by itself. Instead, it is used by the [Analitiq](https://analitiq-app.com) data integration platform or the open-source `analitiq-core` engine to set up data pipelines.
+This is a **connector** -- a configuration that defines how to authenticate with Wise and what data endpoints are available for reading and writing. It does not move data by itself. Instead, it is used by the [Analitiq](https://analitiq-app.com) data integration platform or the open-source `analitiq-core` engine to set up data pipelines.
 
 ## How to use this connector
 
 There are two ways to use this connector:
 
-### Option 1 — Analitiq Cloud (no setup required)
+### Option 1 -- Analitiq Cloud (no setup required)
 
 All connectors from this registry are automatically available on [analitiq-app.com](https://analitiq-app.com). Simply log in, select the connector, and follow the on-screen instructions to connect your account.
 
-### Option 2 — Open Source (self-hosted)
+### Option 2 -- Open Source (self-hosted)
 
 All connectors are open source and free to use. To get started:
 
@@ -27,23 +27,22 @@ The `analitiq-plugin-dataflow` plugin will automatically fetch the required conn
 
 ## Prerequisites
 
-REPLACE with what the user needs before they can connect. Be specific:
-
-- e.g., "A registered OAuth2 application with client ID and client secret"
-- e.g., "An API key generated from your account settings"
-- e.g., "Admin access to your organisation's account"
+- A Wise account (personal or business)
+- A Personal API Token generated from your Wise account settings
 
 ## Authentication
 
-REPLACE with a plain-language explanation of how to authenticate. If the system supports multiple authentication methods, explain when to use each one.
+Wise uses a **Personal API Token** (Bearer token) for authentication. This is a deprecated auth method -- Wise is migrating to OAuth2 + mTLS -- but tokens continue to work as of today.
 
 ### How to get your credentials
 
-REPLACE with step-by-step instructions:
+1. Log in to your account at [wise.com](https://wise.com)
+2. Navigate to **Your Account > Integrations and Tools > API tokens**
+3. Click **Add new token**
+4. Select the permissions you need (read-only is recommended for data extraction)
+5. Copy the generated token -- it will not be shown again
 
-1. e.g., "Log in to your account at https://app.example.com"
-2. e.g., "Navigate to Settings > API Keys"
-3. e.g., "Click 'Generate New Key' and copy the key"
+After connecting, you will be asked to select a **profile** (personal or business). Most API endpoints require a profile ID.
 
 ## Available Endpoints
 
@@ -51,19 +50,20 @@ The table below lists all data endpoints defined by this connector. Each endpoin
 
 | Endpoint | Method | Description |
 |----------|--------|-------------|
-|          |        |             |
+| `/v1/profiles` | GET | List user profiles (personal and/or business) |
+| `/v1/transfers` | GET | List transfers for a profile |
+| `/v1/accounts` | GET | List recipient (beneficiary) accounts for a profile |
 
 ## Limitations
 
-REPLACE with any important limitations users should know about:
-
-- **Rate limits** — e.g., "The API allows 60 requests per minute"
-- **Data freshness** — e.g., "Data may be delayed by up to 15 minutes"
-- **Sandbox vs Production** — e.g., "Sandbox and production use different API keys"
+- **Rate limits** -- The API allows 1000 requests per 60 seconds
+- **Deprecated auth** -- The Personal API Token method is deprecated. Wise is migrating to OAuth2 + mTLS. Monitor the [Wise migration guide](https://docs.wise.com/guides/developer/auth-and-security) for updates
+- **Profile required** -- Most endpoints require a `profile_id`, obtained via the post-auth profile selection step
+- **Sandbox** -- A sandbox environment is available at `https://api.wise-sandbox.com` for testing with test credentials
 
 ## For AI agents
 
-This connector includes `CLAUDE.md` and `AGENTS.md` files — machine-readable references used by AI agents and agentic frameworks. They document authentication types, available endpoints, post-auth steps, and any caveats for programmatic use. Both files are kept identical — `CLAUDE.md` is for Claude Code, `AGENTS.md` is for other agent frameworks.
+This connector includes `CLAUDE.md` and `AGENTS.md` files -- machine-readable references used by AI agents and agentic frameworks. They document authentication types, available endpoints, post-auth steps, and any caveats for programmatic use. Both files are kept identical -- `CLAUDE.md` is for Claude Code, `AGENTS.md` is for other agent frameworks.
 
 ## Create a connector to any system
 
@@ -77,7 +77,7 @@ You can create a new connector to any API or database using Claude and the Anali
 3. Launch Claude and say: *"I want to create a connector for [system name]"*
 4. The plugin will interview you about the system, research its API documentation, and generate the full connector with all required files
 
-No coding required — the plugin handles authentication research, endpoint schema generation, and file creation automatically.
+No coding required -- the plugin handles authentication research, endpoint schema generation, and file creation automatically.
 
 ![Example of Claude building a connector](media/example_1.png)
 
@@ -87,6 +87,7 @@ All connectors in this registry are community-maintained and live at [github.com
 
 ## Links
 
-- [API Documentation](REPLACE with URL)
+- [Wise API Documentation](https://docs.wise.com/api-docs/api-reference)
+- [Wise Auth & Security Guide](https://docs.wise.com/guides/developer/auth-and-security)
 - [Analitiq Cloud](https://analitiq-app.com)
 - [Analitiq Core (open source)](https://github.com/analitiq-core)

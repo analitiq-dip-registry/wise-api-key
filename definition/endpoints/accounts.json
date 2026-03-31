@@ -1,0 +1,135 @@
+{
+  "endpoint": "/v1/accounts",
+  "method": "GET",
+  "version": 1,
+  "endpoint_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Recipient Accounts List",
+    "description": "Returns an array of recipient (beneficiary) account objects for a given profile",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["id", "accountHolderName", "currency", "type", "active"],
+      "properties": {
+        "id": { "type": "integer", "description": "Recipient account ID" },
+        "business": { "type": "integer", "nullable": true, "description": "Business profile ID if applicable" },
+        "profile": { "type": "integer", "nullable": true, "description": "Profile ID that owns this recipient" },
+        "user": { "type": "integer", "description": "User ID who created this recipient" },
+        "accountHolderName": { "type": "string", "description": "Full name of the account holder" },
+        "currency": { "type": "string", "description": "3-character currency code (e.g. GBP, EUR, USD)" },
+        "country": { "type": "string", "nullable": true, "description": "2-character country code" },
+        "type": {
+          "type": "string",
+          "description": "Recipient account type",
+          "enum": [
+            "sort_code",
+            "iban",
+            "swift_code",
+            "aba",
+            "ifsc",
+            "canadian",
+            "interac",
+            "bsb_code",
+            "czech",
+            "hungarian",
+            "polish",
+            "ukraine",
+            "privatbank",
+            "emirates",
+            "colombian",
+            "thailand",
+            "brazil",
+            "brazil_business",
+            "indonesia",
+            "southafrica",
+            "indian",
+            "bangladesh",
+            "nepal",
+            "philippine_peso",
+            "mexican",
+            "chile",
+            "argentina",
+            "nigeria",
+            "turkey",
+            "pix_account",
+            "malaysia",
+            "email"
+          ]
+        },
+        "active": { "type": "boolean", "description": "Whether the recipient is active" },
+        "ownedByCustomer": { "type": "boolean", "description": "Whether owned by the authenticated customer" },
+        "details": {
+          "type": "object",
+          "description": "Bank-specific account details; fields vary by account type",
+          "properties": {
+            "address": {
+              "type": "object",
+              "nullable": true,
+              "description": "Account holder address",
+              "properties": {
+                "country": { "type": "string", "nullable": true, "description": "Country name" },
+                "countryCode": { "type": "string", "nullable": true, "description": "ISO country code" },
+                "firstLine": { "type": "string", "nullable": true, "description": "Address line 1" },
+                "postCode": { "type": "string", "nullable": true, "description": "Postal code" },
+                "city": { "type": "string", "nullable": true, "description": "City" },
+                "state": { "type": "string", "nullable": true, "description": "State/province" }
+              }
+            },
+            "email": { "type": "string", "nullable": true, "description": "Email address" },
+            "legalType": { "type": "string", "nullable": true, "description": "Legal entity type", "enum": ["PRIVATE", "BUSINESS"] },
+            "accountHolderName": { "type": "string", "nullable": true, "description": "Name on the bank account" },
+            "accountNumber": { "type": "string", "nullable": true, "description": "Bank account number" },
+            "sortCode": { "type": "string", "nullable": true, "description": "UK sort code" },
+            "abartn": { "type": "string", "nullable": true, "description": "US ABA routing number" },
+            "accountType": { "type": "string", "nullable": true, "description": "Account sub-type (CHECKING, SAVINGS)" },
+            "ifscCode": { "type": "string", "nullable": true, "description": "Indian IFSC code" },
+            "bsbCode": { "type": "string", "nullable": true, "description": "Australian BSB code" },
+            "institutionNumber": { "type": "string", "nullable": true, "description": "Canadian institution number" },
+            "transitNumber": { "type": "string", "nullable": true, "description": "Canadian transit number" },
+            "bankCode": { "type": "string", "nullable": true, "description": "Bank code" },
+            "branchCode": { "type": "string", "nullable": true, "description": "Branch code" },
+            "IBAN": { "type": "string", "nullable": true, "description": "IBAN" },
+            "BIC": { "type": "string", "nullable": true, "description": "BIC/SWIFT code" },
+            "clabe": { "type": "string", "nullable": true, "description": "Mexican CLABE" },
+            "swiftCode": { "type": "string", "nullable": true, "description": "SWIFT code" },
+            "dateOfBirth": { "type": "string", "nullable": true, "description": "Date of birth" },
+            "clearingNumber": { "type": "string", "nullable": true, "description": "Swedish clearing number" },
+            "bankName": { "type": "string", "nullable": true, "description": "Bank name" },
+            "branchName": { "type": "string", "nullable": true, "description": "Branch name" },
+            "phoneNumber": { "type": "string", "nullable": true, "description": "Phone number" },
+            "taxId": { "type": "string", "nullable": true, "description": "Tax identification number" },
+            "cpf": { "type": "string", "nullable": true, "description": "Brazilian CPF number" },
+            "cnpj": { "type": "string", "nullable": true, "description": "Brazilian CNPJ number" },
+            "rut": { "type": "string", "nullable": true, "description": "Chilean RUT number" },
+            "cardNumber": { "type": "string", "nullable": true, "description": "Card number" },
+            "idDocumentType": { "type": "string", "nullable": true, "description": "ID document type" },
+            "idDocumentNumber": { "type": "string", "nullable": true, "description": "ID document number" },
+            "idCountryIso3": { "type": "string", "nullable": true, "description": "ID issuing country ISO3" },
+            "interacAccount": { "type": "string", "nullable": true, "description": "Interac account" },
+            "payinReference": { "type": "string", "nullable": true, "description": "Pay-in reference" },
+            "targetProfile": { "type": "integer", "nullable": true, "description": "Target Wise profile ID" },
+            "targetUserId": { "type": "integer", "nullable": true, "description": "Target Wise user ID" }
+          }
+        }
+      }
+    }
+  },
+  "filters": {
+    "profile": {
+      "description": "Profile ID to list recipients for",
+      "type": "integer",
+      "operators": ["eq"],
+      "required": false
+    },
+    "currency": {
+      "description": "Filter recipients by currency code",
+      "type": "string",
+      "operators": ["eq"],
+      "required": false,
+      "example": "GBP"
+    }
+  },
+  "pagination": null,
+  "replication_filter_mapping": {},
+  "_content_hash": "e8773da4f501c4b5bfceff482f721494b73c1f61bd9454a3a695c5822e10da87"
+}

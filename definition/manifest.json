@@ -1,7 +1,40 @@
 {
-  "connector_id": "REPLACE-WITH-UUID",
-  "connector_name": "REPLACE",
-  "slug": "REPLACE",
+  "connector_name": "Wise",
+  "slug": "wise",
   "version": "1.0.0",
-  "endpoints": []
+  "placeholders": [
+    {
+      "name": "api_key",
+      "source": "user_defined",
+      "description": "Personal API token generated from Wise account settings"
+    },
+    {
+      "name": "profile_id",
+      "source": "post_auth",
+      "description": "Wise profile ID selected after authentication (personal or business)"
+    }
+  ],
+  "endpoints": [
+    {
+      "endpoint": "/v1/profiles",
+      "method": "GET",
+      "version": 1,
+      "file": "definition/endpoints/profiles.json",
+      "placeholders": []
+    },
+    {
+      "endpoint": "/v1/transfers",
+      "method": "GET",
+      "version": 1,
+      "file": "definition/endpoints/transfers.json",
+      "placeholders": []
+    },
+    {
+      "endpoint": "/v1/accounts",
+      "method": "GET",
+      "version": 1,
+      "file": "definition/endpoints/accounts.json",
+      "placeholders": []
+    }
+  ]
 }
