@@ -1,3 +1,5 @@
+![Status: Verified](https://img.shields.io/badge/status-verified-brightgreen)
+
 # Wise
 
 API connector for [Wise](https://wise.com) (formerly TransferWise), an international money transfer and multi-currency account platform. This connector provides access to profiles, transfers, and recipient account data.
