@@ -133,7 +133,7 @@
       "description": "Profile ID to filter transfers for",
       "type": "integer",
       "operators": ["eq"],
-      "required": false
+      "required": true
     },
     "status": {
       "description": "Comma-separated list of transfer status codes",
