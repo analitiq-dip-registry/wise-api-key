@@ -27,14 +27,14 @@
       "method": "GET",
       "version": 1,
       "file": "definition/endpoints/transfers.json",
-      "placeholders": []
+      "placeholders": ["profile_id"]
     },
     {
       "endpoint": "/v1/accounts",
       "method": "GET",
       "version": 1,
       "file": "definition/endpoints/accounts.json",
-      "placeholders": []
+      "placeholders": ["profile_id"]
     }
   ]
 }

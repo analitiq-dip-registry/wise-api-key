@@ -119,7 +119,7 @@
       "description": "Profile ID to list recipients for",
       "type": "integer",
       "operators": ["eq"],
-      "required": false
+      "required": true
     },
     "currency": {
       "description": "Filter recipients by currency code",
