@@ -1,0 +1,191 @@
+{
+  "endpoint": "/v1/transfers",
+  "method": "GET",
+  "version": 1,
+  "endpoint_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Transfers List",
+    "description": "Returns an array of transfer objects for a given profile",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "id",
+        "user",
+        "targetAccount",
+        "status",
+        "rate",
+        "created",
+        "sourceCurrency",
+        "sourceValue",
+        "targetCurrency",
+        "targetValue"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Transfer ID"
+        },
+        "user": {
+          "type": "integer",
+          "description": "Your user ID"
+        },
+        "targetAccount": {
+          "type": "integer",
+          "description": "Recipient account ID"
+        },
+        "sourceAccount": {
+          "type": "integer",
+          "nullable": true,
+          "description": "Source borderless account ID"
+        },
+        "quote": {
+          "type": "integer",
+          "nullable": true,
+          "description": "Quote ID (deprecated, use quoteUuid)"
+        },
+        "quoteUuid": {
+          "type": "string",
+          "nullable": true,
+          "description": "Quote UUID"
+        },
+        "status": {
+          "type": "string",
+          "description": "Transfer current status",
+          "enum": [
+            "incoming_payment_waiting",
+            "incoming_payment_initiated",
+            "processing",
+            "funds_converted",
+            "outgoing_payment_sent",
+            "cancelled",
+            "funds_refunded",
+            "bounced_back",
+            "charged_back",
+            "unknown"
+          ]
+        },
+        "reference": {
+          "type": "string",
+          "nullable": true,
+          "description": "Recipient will see this reference text"
+        },
+        "rate": {
+          "type": "number",
+          "description": "Exchange rate value"
+        },
+        "created": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the transfer was created"
+        },
+        "business": {
+          "type": "integer",
+          "nullable": true,
+          "description": "Business profile ID"
+        },
+        "transferRequest": {
+          "type": "integer",
+          "nullable": true,
+          "description": "Transfer request ID"
+        },
+        "details": {
+          "type": "object",
+          "description": "Transfer details",
+          "properties": {
+            "reference": {
+              "type": "string",
+              "nullable": true,
+              "description": "Payment reference text"
+            }
+          }
+        },
+        "hasActiveIssues": {
+          "type": "boolean",
+          "description": "Whether there are pending issues"
+        },
+        "sourceCurrency": {
+          "type": "string",
+          "description": "Source currency code"
+        },
+        "sourceValue": {
+          "type": "number",
+          "description": "Amount in source currency"
+        },
+        "targetCurrency": {
+          "type": "string",
+          "description": "Target currency code"
+        },
+        "targetValue": {
+          "type": "number",
+          "description": "Amount in target currency"
+        },
+        "customerTransactionId": {
+          "type": "string",
+          "nullable": true,
+          "description": "Unique ID assigned by customer for deduplication"
+        }
+      }
+    }
+  },
+  "filters": {
+    "profile": {
+      "description": "Profile ID to filter transfers for",
+      "type": "integer",
+      "operators": ["eq"],
+      "required": false
+    },
+    "status": {
+      "description": "Comma-separated list of transfer status codes",
+      "type": "string",
+      "operators": ["eq", "in"],
+      "required": false
+    },
+    "sourceCurrency": {
+      "description": "Source currency code",
+      "type": "string",
+      "operators": ["eq"],
+      "required": false
+    },
+    "targetCurrency": {
+      "description": "Target currency code",
+      "type": "string",
+      "operators": ["eq"],
+      "required": false
+    },
+    "createdDateStart": {
+      "description": "Starting date to filter transfers, inclusive",
+      "type": "string",
+      "operators": ["gte"],
+      "required": false,
+      "example": "2018-12-15T00:00:00.000Z"
+    },
+    "createdDateEnd": {
+      "description": "Ending date to filter transfers, inclusive",
+      "type": "string",
+      "operators": ["lte"],
+      "required": false,
+      "example": "2018-12-30T23:59:59.999Z"
+    }
+  },
+  "pagination": {
+    "type": "offset",
+    "params": {
+      "limit_param": "limit",
+      "offset_param": "offset",
+      "max_limit": null,
+      "cursor_param": null,
+      "next_cursor_field": null,
+      "page_param": null,
+      "uses_link_header": false,
+      "time_window_params": {
+        "start_param": null,
+        "end_param": null
+      }
+    }
+  },
+  "replication_filter_mapping": {
+    "created": "createdDateStart"
+  },
+  "_content_hash": "ef672e35bf9310bbf610657ea4d12b245dc28198502ff9eb3401f2abd207b3b6"
+}

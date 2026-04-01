@@ -1,0 +1,159 @@
+{
+  "endpoint": "/v1/profiles",
+  "method": "GET",
+  "version": 1,
+  "endpoint_schema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Profiles List",
+    "description": "Returns an array of user profile objects (personal and/or business) belonging to the authenticated user",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": ["id", "type", "details"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "Profile ID"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["personal", "business"],
+          "description": "Profile type"
+        },
+        "fullName": {
+          "type": "string",
+          "description": "Full name of the profile owner (personal full name or business name)"
+        },
+        "details": {
+          "type": "object",
+          "description": "Profile details; structure depends on profile type (personal or business)",
+          "properties": {
+            "firstName": {
+              "type": "string",
+              "nullable": true,
+              "description": "First name (personal profiles)"
+            },
+            "lastName": {
+              "type": "string",
+              "nullable": true,
+              "description": "Last name (personal profiles)"
+            },
+            "dateOfBirth": {
+              "type": "string",
+              "format": "date",
+              "nullable": true,
+              "description": "Date of birth in YYYY-MM-DD format (personal profiles)"
+            },
+            "phoneNumber": {
+              "type": "string",
+              "nullable": true,
+              "description": "Phone number"
+            },
+            "avatar": {
+              "type": "string",
+              "nullable": true,
+              "description": "Link to person avatar image"
+            },
+            "occupation": {
+              "type": "string",
+              "nullable": true,
+              "description": "Person occupation"
+            },
+            "occupations": {
+              "type": "array",
+              "nullable": true,
+              "description": "Array of occupation objects",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string",
+                    "description": "Occupation code"
+                  },
+                  "format": {
+                    "type": "string",
+                    "description": "Occupation format"
+                  }
+                }
+              }
+            },
+            "primaryAddress": {
+              "type": "integer",
+              "nullable": true,
+              "description": "Address object ID"
+            },
+            "firstNameInKana": {
+              "type": "string",
+              "nullable": true,
+              "description": "First name in Katakana (Japanese profiles)"
+            },
+            "lastNameInKana": {
+              "type": "string",
+              "nullable": true,
+              "description": "Last name in Katakana (Japanese profiles)"
+            },
+            "name": {
+              "type": "string",
+              "nullable": true,
+              "description": "Business name (business profiles)"
+            },
+            "registrationNumber": {
+              "type": "string",
+              "nullable": true,
+              "description": "Business registration number"
+            },
+            "acn": {
+              "type": "string",
+              "nullable": true,
+              "description": "Australian Company Number"
+            },
+            "abn": {
+              "type": "string",
+              "nullable": true,
+              "description": "Australian Business Number"
+            },
+            "arbn": {
+              "type": "string",
+              "nullable": true,
+              "description": "Australian Registered Body Number"
+            },
+            "companyType": {
+              "type": "string",
+              "nullable": true,
+              "description": "Company legal form"
+            },
+            "companyRole": {
+              "type": "string",
+              "nullable": true,
+              "description": "Role of person in the company"
+            },
+            "descriptionOfBusiness": {
+              "type": "string",
+              "nullable": true,
+              "description": "Sector or field of activity"
+            },
+            "webpage": {
+              "type": "string",
+              "nullable": true,
+              "description": "Business webpage URL"
+            },
+            "businessCategory": {
+              "type": "string",
+              "nullable": true,
+              "description": "Type of business"
+            },
+            "businessSubCategory": {
+              "type": "string",
+              "nullable": true,
+              "description": "Specific sub-category of business"
+            }
+          }
+        }
+      }
+    }
+  },
+  "filters": {},
+  "pagination": null,
+  "replication_filter_mapping": {},
+  "_content_hash": "e1e3ceeda329fcbe464bb51b0e20513e62f4b23dc8043c2c0ee0e4e47f05cb93"
+}
