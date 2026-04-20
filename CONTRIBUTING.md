@@ -7,9 +7,9 @@ Thank you for your interest in contributing to the Analitiq connector registry. 
 - Install [Claude Code](https://claude.ai/code)
 - Install the connector builder plugin:
   ```
-  claude plugin add analitiq-skill-registry/analitiq-plugin-connector-builder
+  claude plugin add analitiq-dip-registry/analitiq-plugin-connector-builder
   ```
-- Fork the connector repo you want to contribute to (or the [connector-template](https://github.com/analitiq-skill-registry/connector-template) for new connectors)
+- Fork the connector repo you want to contribute to (or the [connector-template](https://github.com/analitiq-dip-registry/connector-template) for new connectors)
 
 ## Adding endpoints to an existing connector
 
@@ -29,14 +29,14 @@ For breaking changes to authentication or connector structure, use the label `ve
 
 ## Creating a new connector
 
-Before creating a new connector, check if one already exists at [github.com/analitiq-skill-registry](https://github.com/analitiq-skill-registry). Connectors are named `connector-{system-name}`.
+Before creating a new connector, check if one already exists at [github.com/analitiq-dip-registry](https://github.com/analitiq-dip-registry). Connectors are named `connector-{system-name}`.
 
 If the connector doesn't exist:
 
 1. Launch Claude anywhere
 2. Tell it: *"I want to create a connector for [system name]"*
 3. The plugin will interview you about the system, research its API documentation, and generate the full connector with all required files
-4. Push the new repo to the `analitiq-skill-registry` GitHub org (or request access to do so)
+4. Push the new repo to the `analitiq-dip-registry` GitHub org (or request access to do so)
 
 No coding required — the plugin handles authentication research, endpoint schema generation, and file creation automatically.
 
@@ -52,13 +52,25 @@ No coding required — the plugin handles authentication research, endpoint sche
 
 ## What the automated pipeline does
 
-When a PR is merged with a version label:
+When a PR is merged into `main` with a version label, the `Version Bump on PR Merge` workflow runs and:
 
-1. The version in `definition/manifest.json` is bumped according to the label
-2. A new entry is added to `CHANGELOG.md` with the PR title and date
-3. The changes are committed and pushed automatically
+1. Bumps the version in `definition/manifest.json` according to the label
+2. Appends a new entry to `CHANGELOG.md` with the PR title and date
+3. Commits and pushes the bump to `main`
+4. Creates a git tag `vX.Y.Z` and a matching GitHub Release targeting `main`
+5. POSTs a notification to the Analitiq registry webhook with the release metadata (`slug`, `name`, `type`, `repo`, `version`, `tag`, `release_url`, `published_at`, `bump`)
 
-If no version label is applied, the version is not changed.
+### When a release is NOT created
+
+- **PRs merged without a version label** — the workflow exits before step 1. Nothing is bumped, tagged, released, or notified.
+- **PRs closed without merging** — workflow does not run.
+- **Direct pushes to `main`** — workflow is `pull_request`-gated, so direct pushes (including the bot's own bump commit) do not trigger it.
+
+### Creating a release when you're ready
+
+The intended path is: **apply a version label to the PR before merging**. That is the only "release button" — merging a labeled PR runs the full pipeline end-to-end.
+
+If you already merged a PR without a label and want a release, open a small follow-up PR (for example a docs tweak) with the desired `version:*` label and merge it. Do not create tags or GitHub Releases by hand — doing so bypasses the manifest bump, the CHANGELOG entry, and the webhook notification, and leaves the registry out of sync.
 
 ## Repository structure
 
@@ -78,4 +90,4 @@ connector-{name}/
 
 ## Questions?
 
-If you're unsure about anything, open an issue on the connector repo or on the [connector builder plugin](https://github.com/analitiq-skill-registry/analitiq-plugin-connector-builder) repo.
+If you're unsure about anything, open an issue on the connector repo or on the [connector builder plugin](https://github.com/analitiq-dip-registry/analitiq-plugin-connector-builder) repo.
