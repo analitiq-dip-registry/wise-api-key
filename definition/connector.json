@@ -2,7 +2,7 @@
   "connector_name": "Wise",
   "connector_type": "api",
   "connector_descr": "International money transfer and multi-currency account platform (formerly TransferWise)",
-  "slug": "wise",
+  "slug": "wise-api-key",
   "base_url": "https://api.wise.com",
   "client_required": false,
   "auth": {
