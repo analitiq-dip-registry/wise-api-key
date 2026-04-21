@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.2] - 2026-04-21
+
+### Fixed
+- docs: point engine references to analitiq-ai/analitiq-engine (#7)
+
 ## [0.0.1] - 2026-03-31
 
 ### Added

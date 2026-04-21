@@ -1,7 +1,7 @@
 {
   "connector_name": "Wise",
   "slug": "wise",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "placeholders": [
     {
       "name": "api_key",
@@ -27,14 +27,18 @@
       "method": "GET",
       "version": 1,
       "file": "definition/endpoints/transfers.json",
-      "placeholders": ["profile_id"]
+      "placeholders": [
+        "profile_id"
+      ]
     },
     {
       "endpoint": "/v1/accounts",
       "method": "GET",
       "version": 1,
       "file": "definition/endpoints/accounts.json",
-      "placeholders": ["profile_id"]
+      "placeholders": [
+        "profile_id"
+      ]
     }
   ]
 }
