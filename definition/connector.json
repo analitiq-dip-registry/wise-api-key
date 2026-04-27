@@ -1,13 +1,26 @@
 {
-  "connector_name": "Wise",
+  "connector_name": "Wise (API Key)",
   "connector_type": "api",
   "connector_descr": "International money transfer and multi-currency account platform (formerly TransferWise)",
   "slug": "wise-api-key",
+  "version": "0.0.2",
   "base_url": "https://api.wise.com",
   "client_required": false,
   "auth": {
     "type": "api_key"
   },
+  "placeholders": [
+    {
+      "name": "api_key",
+      "source": "user_defined",
+      "description": "Personal API token generated from Wise account settings"
+    },
+    {
+      "name": "profile_id",
+      "source": "post_auth",
+      "description": "Wise profile ID selected after authentication (personal or business)"
+    }
+  ],
   "headers": {
     "Accept": "application/json",
     "Content-Type": "application/json",
@@ -40,6 +53,29 @@
         "value_path": "id",
         "label_path": "fullName"
       }
+    }
+  ],
+  "endpoints": [
+    {
+      "endpoint": "/v1/profiles",
+      "method": "GET",
+      "version": 1,
+      "file": "definition/endpoints/profiles.json",
+      "placeholders": []
+    },
+    {
+      "endpoint": "/v1/transfers",
+      "method": "GET",
+      "version": 1,
+      "file": "definition/endpoints/transfers.json",
+      "placeholders": ["profile_id"]
+    },
+    {
+      "endpoint": "/v1/accounts",
+      "method": "GET",
+      "version": 1,
+      "file": "definition/endpoints/accounts.json",
+      "placeholders": ["profile_id"]
     }
   ],
   "timeout": 30,
