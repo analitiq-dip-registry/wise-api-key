@@ -1,6 +1,6 @@
 {
   "connector_name": "Wise",
-  "slug": "wise",
+  "slug": "wise-api-key",
   "version": "0.0.2",
   "placeholders": [
     {
