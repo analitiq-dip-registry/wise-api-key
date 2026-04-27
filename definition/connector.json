@@ -3,7 +3,7 @@
   "connector_type": "api",
   "connector_descr": "International money transfer and multi-currency account platform (formerly TransferWise)",
   "slug": "wise-api-key",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "base_url": "https://api.wise.com",
   "client_required": false,
   "auth": {

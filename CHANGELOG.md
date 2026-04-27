@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.0] - 2026-04-27
+
+### Added
+- feat: add canonical type mapping (#8)
+
 ## [0.1.0] - 2026-04-27
 
 ### Added
