@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.1.0] - 2026-04-27
+
+### Added
+- feat: consolidate manifest into connector.json (#9)
+
 ## [0.0.2] - 2026-04-21
 
 ### Fixed

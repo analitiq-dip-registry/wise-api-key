@@ -3,7 +3,7 @@
   "connector_type": "api",
   "connector_descr": "International money transfer and multi-currency account platform (formerly TransferWise)",
   "slug": "wise-api-key",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "base_url": "https://api.wise.com",
   "client_required": false,
   "auth": {
@@ -68,14 +68,18 @@
       "method": "GET",
       "version": 1,
       "file": "definition/endpoints/transfers.json",
-      "placeholders": ["profile_id"]
+      "placeholders": [
+        "profile_id"
+      ]
     },
     {
       "endpoint": "/v1/accounts",
       "method": "GET",
       "version": 1,
       "file": "definition/endpoints/accounts.json",
-      "placeholders": ["profile_id"]
+      "placeholders": [
+        "profile_id"
+      ]
     }
   ],
   "timeout": 30,
