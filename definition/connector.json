@@ -1,91 +1,65 @@
 {
-  "connector_name": "Wise (API Key)",
-  "connector_type": "api",
-  "connector_descr": "International money transfer and multi-currency account platform (formerly TransferWise)",
-  "slug": "wise-api-key",
+  "$schema": "https://schemas.analitiq.ai/connector/latest.json",
+  "kind": "api",
+  "display_name": "Wise (API Key)",
+  "description": "International money transfer and multi-currency account platform (formerly TransferWise)",
+  "documentation_url": "https://docs.wise.com/api-docs/api-reference",
   "version": "0.2.0",
-  "base_url": "https://api.wise.com",
-  "client_required": false,
+  "default_transport": "api",
+  "transports": {
+    "api": {
+      "transport_type": "http",
+      "base_url": "https://api.wise.com",
+      "headers": {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": { "template": "Bearer ${secrets.api_key}" }
+      },
+      "timeout_seconds": 30,
+      "rate_limit": {
+        "max_requests": 1000,
+        "time_window_seconds": 60
+      }
+    }
+  },
   "auth": {
     "type": "api_key"
   },
-  "placeholders": [
-    {
-      "name": "api_key",
-      "source": "user_defined",
-      "description": "Personal API token generated from Wise account settings"
-    },
-    {
-      "name": "profile_id",
-      "source": "post_auth",
-      "description": "Wise profile ID selected after authentication (personal or business)"
-    }
-  ],
-  "headers": {
-    "Accept": "application/json",
-    "Content-Type": "application/json",
-    "Authorization": "Bearer ${api_key}"
-  },
-  "form_fields": [
-    {
-      "name": "api_key",
-      "label": "Personal API Token",
-      "type": "password",
-      "required": true,
-      "secret": true,
-      "help_text": "Generate from Wise.com > Your Account > Integrations and Tools > API tokens"
-    }
-  ],
-  "post_auth_steps": [
-    {
-      "step_order": 1,
-      "field_name": "profile_id",
-      "label": "Select Profile",
-      "type": "select",
-      "required": true,
-      "options_source": {
-        "method": "GET",
-        "url": "https://api.wise.com/v2/profiles",
-        "headers": {
-          "Authorization": "Bearer ${api_key}"
-        },
-        "items_path": null,
-        "value_path": "id",
-        "label_path": "fullName"
+  "connection_contract": {
+    "inputs": {
+      "api_key": {
+        "source": "user",
+        "phase": "pre_auth",
+        "storage": "secrets",
+        "type": "string",
+        "required": true,
+        "secret": true,
+        "ui": {
+          "label": "Personal API Token",
+          "widget": "password",
+          "help_text": "Generate from Wise.com > Your Account > Integrations and Tools > API tokens"
+        }
       }
-    }
-  ],
-  "endpoints": [
-    {
-      "endpoint": "/v1/profiles",
-      "method": "GET",
-      "version": 1,
-      "file": "definition/endpoints/profiles.json",
-      "placeholders": []
     },
-    {
-      "endpoint": "/v1/transfers",
-      "method": "GET",
-      "version": 1,
-      "file": "definition/endpoints/transfers.json",
-      "placeholders": [
-        "profile_id"
-      ]
+    "post_auth_outputs": {
+      "profile_id": {
+        "mode": "user_selection",
+        "storage": "connection.selections",
+        "type": "integer",
+        "value_path": "id",
+        "label_path": "fullName",
+        "options_request": {
+          "transport_ref": "api",
+          "method": "GET",
+          "path": "/v2/profiles"
+        },
+        "ui": {
+          "label": "Select Profile"
+        }
+      }
     },
-    {
-      "endpoint": "/v1/accounts",
-      "method": "GET",
-      "version": 1,
-      "file": "definition/endpoints/accounts.json",
-      "placeholders": [
-        "profile_id"
-      ]
-    }
-  ],
-  "timeout": 30,
-  "requests_per_second": {
-    "max_requests": 1000,
-    "time_window_seconds": 60
-  },
-  "api_doc_url": "https://docs.wise.com/api-docs/api-reference"
+    "required_for_activation": [
+      "connection.selections.profile_id"
+    ]
+  }
 }
