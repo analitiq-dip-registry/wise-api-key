@@ -4,7 +4,7 @@
   "display_name": "Wise (API Key)",
   "description": "International money transfer and multi-currency account platform (formerly TransferWise)",
   "documentation_url": "https://docs.wise.com/api-docs/api-reference",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "default_transport": "api",
   "transports": {
     "api": {
@@ -13,7 +13,9 @@
       "headers": {
         "Accept": "application/json",
         "Content-Type": "application/json",
-        "Authorization": { "template": "Bearer ${secrets.api_key}" }
+        "Authorization": {
+          "template": "Bearer ${secrets.api_key}"
+        }
       },
       "timeout_seconds": 30,
       "rate_limit": {
