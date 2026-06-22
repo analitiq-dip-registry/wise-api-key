@@ -4,7 +4,7 @@
   "display_name": "Wise (API Key)",
   "description": "International money transfer and multi-currency account platform (formerly TransferWise)",
   "documentation_url": "https://docs.wise.com/api-docs/api-reference",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "default_transport": "api",
   "transports": {
     "api": {
