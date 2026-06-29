@@ -95,4 +95,3 @@ All connectors in this registry are community-maintained and live at [github.com
 - [Wise Auth & Security Guide](https://docs.wise.com/guides/developer/auth-and-security)
 - [Analitiq Cloud](https://analitiq-app.com)
 - [Analitiq Engine (open source)](https://github.com/analitiq-ai/analitiq-engine)
-
