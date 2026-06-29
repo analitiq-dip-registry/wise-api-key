@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.4] - 2026-06-29
+
+### Fixed
+- bug: retrigger version-bump to refresh registry webhook (#15)
+
 ## [0.2.3] - 2026-06-29
 
 ### Fixed
