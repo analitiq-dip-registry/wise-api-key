@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.3] - 2026-06-29
+
+### Fixed
+- bug: fix Wise datetime tz bind and nested-object materialization (#14)
+
 ## [0.2.2] - 2026-06-22
 
 ### Fixed
