@@ -1,6 +1,7 @@
 {
   "$schema": "https://schemas.analitiq.ai/connector/latest.json",
   "kind": "api",
+  "connector_id": "wise-api-key",
   "display_name": "Wise (API Key)",
   "description": "International money transfer and multi-currency account platform (formerly TransferWise)",
   "documentation_url": "https://docs.wise.com/api-docs/api-reference",
