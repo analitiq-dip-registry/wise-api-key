@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.5] - 2026-06-30
+
+### Fixed
+- bug: retrigger version-bump to refresh registry sync (#16)
+
 ## [0.2.4] - 2026-06-29
 
 ### Fixed
