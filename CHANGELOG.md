@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.6] - 2026-06-30
+
+### Fixed
+- feat: rename endpoint files to match endpoint_id (#17)
+
 ## [0.2.5] - 2026-06-30
 
 ### Fixed
