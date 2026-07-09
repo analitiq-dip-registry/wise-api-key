@@ -1,13 +1,17 @@
 {
   "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
-  "endpoint_id": "v1_accounts",
+  "endpoint_id": "v1__accounts",
   "display_name": "Recipient Accounts List",
   "description": "Returns an array of recipient (beneficiary) account objects for a given profile",
   "operations": {
     "read": {
       "request": {
         "path": "/v1/accounts",
-        "method": "GET"
+        "method": "GET",
+        "query": {
+          "profile": { "from_param": "profile" },
+          "currency": { "from_param": "currency" }
+        }
       },
       "response": {
         "records": {
