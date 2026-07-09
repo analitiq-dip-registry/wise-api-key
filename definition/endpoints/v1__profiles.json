@@ -1,6 +1,6 @@
 {
   "$schema": "https://schemas.analitiq.ai/api-endpoint/latest.json",
-  "endpoint_id": "v1_profiles",
+  "endpoint_id": "v1__profiles",
   "display_name": "Profiles List",
   "description": "Returns an array of user profile objects (personal and/or business) belonging to the authenticated user",
   "operations": {
