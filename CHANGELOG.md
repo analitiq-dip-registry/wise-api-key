@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.7] - 2026-07-09
+
+### Fixed
+- bug: make Wise endpoint definitions pass the schema validator (#18)
+
 ## [0.2.6] - 2026-06-30
 
 ### Fixed
