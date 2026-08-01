@@ -223,7 +223,8 @@
         "type": "offset",
         "offset": {
           "param": "offset",
-          "initial": 0
+          "initial": 0,
+          "increment_by": 100
         },
         "limit": {
           "param": "limit",
