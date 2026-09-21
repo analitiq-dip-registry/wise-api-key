@@ -9,8 +9,12 @@
         "path": "/v1/accounts",
         "method": "GET",
         "query": {
-          "profile": { "from_param": "profile" },
-          "currency": { "from_param": "currency" }
+          "profile": {
+            "from_param": "profile"
+          },
+          "currency": {
+            "from_param": "currency"
+          }
         }
       },
       "response": {
@@ -344,10 +348,14 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "description": "Filter recipients by currency code",
-          "operators": [
-            "eq"
-          ]
+          "description": "Filter recipients by currency code"
+        }
+      },
+      "filters": {
+        "currency": {
+          "eq": {
+            "from_param": "currency"
+          }
         }
       }
     }

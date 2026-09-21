@@ -9,14 +9,30 @@
         "path": "/v1/transfers",
         "method": "GET",
         "query": {
-          "profile": { "from_param": "profile" },
-          "status": { "from_param": "status" },
-          "sourceCurrency": { "from_param": "sourceCurrency" },
-          "targetCurrency": { "from_param": "targetCurrency" },
-          "createdDateStart": { "from_param": "createdDateStart" },
-          "createdDateEnd": { "from_param": "createdDateEnd" },
-          "limit": { "from_param": "limit" },
-          "offset": { "from_param": "offset" }
+          "profile": {
+            "from_param": "profile"
+          },
+          "status": {
+            "from_param": "status"
+          },
+          "sourceCurrency": {
+            "from_param": "sourceCurrency"
+          },
+          "targetCurrency": {
+            "from_param": "targetCurrency"
+          },
+          "createdDateStart": {
+            "from_param": "createdDateStart"
+          },
+          "createdDateEnd": {
+            "from_param": "createdDateEnd"
+          },
+          "limit": {
+            "from_param": "limit"
+          },
+          "offset": {
+            "from_param": "offset"
+          }
         }
       },
       "response": {
@@ -164,29 +180,19 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "description": "Comma-separated list of transfer status codes",
-          "operators": [
-            "eq",
-            "in"
-          ]
+          "description": "Comma-separated list of transfer status codes"
         },
         "sourceCurrency": {
           "in": "query",
           "type": "string",
           "required": false,
-          "description": "Source currency code",
-          "operators": [
-            "eq"
-          ]
+          "description": "Source currency code"
         },
         "targetCurrency": {
           "in": "query",
           "type": "string",
           "required": false,
-          "description": "Target currency code",
-          "operators": [
-            "eq"
-          ]
+          "description": "Target currency code"
         },
         "createdDateStart": {
           "in": "query",
@@ -199,10 +205,7 @@
           "in": "query",
           "type": "string",
           "required": false,
-          "description": "Ending date to filter transfers, inclusive",
-          "operators": [
-            "lte"
-          ]
+          "description": "Ending date to filter transfers, inclusive"
         },
         "limit": {
           "in": "query",
@@ -250,6 +253,31 @@
             "format": "date-time"
           }
         ]
+      },
+      "filters": {
+        "status": {
+          "eq": {
+            "from_param": "status"
+          },
+          "in": {
+            "from_param": "status"
+          }
+        },
+        "sourceCurrency": {
+          "eq": {
+            "from_param": "sourceCurrency"
+          }
+        },
+        "targetCurrency": {
+          "eq": {
+            "from_param": "targetCurrency"
+          }
+        },
+        "created": {
+          "lte": {
+            "from_param": "createdDateEnd"
+          }
+        }
       }
     }
   }
