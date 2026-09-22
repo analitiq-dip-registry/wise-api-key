@@ -13,7 +13,6 @@
       "base_url": "https://api.wise.com",
       "headers": {
         "Accept": "application/json",
-        "Content-Type": "application/json",
         "Authorization": {
           "template": "Bearer ${secrets.api_key}"
         }
